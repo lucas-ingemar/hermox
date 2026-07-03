@@ -28,5 +28,10 @@ jobs:
           TAG=${{ github.event.release.tag_name }}
           IMAGE=ghcr.io/${{ github.repository }}
 
-          docker build -t $IMAGE:$TAG .
+          docker build \
+            -t $IMAGE:$TAG \
+            -t $IMAGE:latest \
+            .
+
           docker push $IMAGE:$TAG
+          docker push $IMAGE:latest
